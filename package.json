@@ -1,0 +1,39 @@
+{
+  "name": "openai-live-console",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
+  "scripts": {
+    "dev": "node --use-env-proxy --env-file-if-exists=.env server/index.ts",
+    "build": "vite build",
+    "start": "node --use-env-proxy --env-file-if-exists=.env server/index.ts --production",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run format:check && npm run typecheck && npm run build",
+    "doctor": "node --use-env-proxy --env-file-if-exists=.env scripts/doctor.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "https-proxy-agent": "7.0.6",
+    "openai": "7.9.0",
+    "proxy-from-env": "1.1.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "ws": "8.21.3"
+  },
+  "devDependencies": {
+    "@types/node": "24.12.2",
+    "@types/proxy-from-env": "1.0.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@types/ws": "8.18.1",
+    "@vitejs/plugin-react": "6.1.1",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "vite": "8.2.2"
+  }
+}
