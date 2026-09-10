@@ -18,7 +18,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "https-proxy-agent": "7.0.6",
+    "https-proxy-agent": "9.1.0",
     "openai": "7.9.0",
     "proxy-from-env": "1.1.0",
     "react": "19.2.4",
