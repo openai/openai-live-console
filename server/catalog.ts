@@ -1,26 +1,27 @@
 import type { FunctionTool } from 'openai/resources/responses/responses';
 
 // Fictional data, authored for this sample. No orders, customers, or external services.
+// Generic sample labels are placeholders, not backpack brands or model names.
 export const products = [
   {
-    id: 'daybreak-18',
-    name: 'Daybreak 18',
+    id: 'sample-backpack-a',
+    name: 'Sample Backpack A',
     price: 65,
     liters: 18,
     useCases: ['commute', 'hike'],
     details: 'A light daypack with a water-resistant shell and a 13-inch laptop sleeve.',
   },
   {
-    id: 'weekender-28',
-    name: 'Weekender 28',
+    id: 'sample-backpack-b',
+    name: 'Sample Backpack B',
     price: 95,
     liters: 28,
     useCases: ['weekend', 'commute'],
     details: 'A clamshell travel pack with a 16-inch laptop sleeve. Designed for a two-night trip.',
   },
   {
-    id: 'summit-32',
-    name: 'Summit 32',
+    id: 'sample-backpack-c',
+    name: 'Sample Backpack C',
     price: 145,
     liters: 32,
     useCases: ['hike', 'weekend'],

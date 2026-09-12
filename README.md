@@ -26,7 +26,7 @@ Open **http://127.0.0.1:3000**. The exact host matters: the server rejects alter
 
 > Find me a backpack for a weekend trip under 120 dollars.
 
-The expected catalog result is the fictional **Weekender 28**, priced at **$95**. Headphones help avoid acoustic feedback. Use **End conversation** when finished and wait for a confirmed close. Muting the microphone or speaker does not stop billing.
+The expected catalog result is the fictional **Sample Backpack B**, priced at **$95**. All catalog names are generic sample placeholders, not backpack brands or model names. Headphones help avoid acoustic feedback. Use **End conversation** when finished and wait for a confirmed close. Muting the microphone or speaker does not stop billing.
 
 `npm run doctor` only reads model metadata. It does not make a model inference call or test audio. The app does not silently select a different Live model when access fails.
 
