@@ -75,6 +75,8 @@ Keys stay on the server. The server enforces loopback binding, exact Host/Origin
 
 The app does not save audio or transcripts to disk. Transcripts and bounded event history remain in memory until cleared or expired. Copying a transcript is an explicit user action. OpenAI requests follow your project's data controls. The application-owned backend requests `store: false`; this is not a promise of zero retention.
 
+The transcript display retains at most 100 groups and 20,000 text characters. When a continuous group exceeds that limit, its latest text remains visible and the display indicates that older text was clipped.
+
 Missing final usage is labeled incomplete. A disconnected socket alone does not prove the upstream session ended. Check API usage if finalization cannot be confirmed.
 
 This is an educational sample provided as-is, not a supported production service. Use repository issues for reproducible sample bugs and the [OpenAI Help Center](https://help.openai.com/) for account or billing questions. Report security issues privately using [SECURITY.md](SECURITY.md).
