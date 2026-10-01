@@ -52,8 +52,12 @@ export function reduceEvent(state: ViewState, event: ConsoleEvent): ViewState {
       });
     let clipped = state.clipped;
     while (transcript.length > 100 || transcript.reduce((n, t) => n + t.text.length, 0) > 20000) {
-      transcript.shift();
       clipped = true;
+      if (transcript.length === 1) {
+        transcript[0] = { ...transcript[0], text: transcript[0].text.slice(-20000) };
+        break;
+      }
+      transcript.shift();
     }
     return { ...state, transcript, clipped, seen: [...state.seen.slice(-2047), event.id] };
   }
