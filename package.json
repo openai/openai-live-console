@@ -12,10 +12,11 @@
     "build": "vite build",
     "start": "node --use-env-proxy --env-file-if-exists=.env server/index.ts --production",
     "typecheck": "tsc --noEmit",
-    "check": "npm run format:check && npm run typecheck && npm run build",
+    "check": "npm run format:check && npm run typecheck && npm test && npm run build",
     "doctor": "node --use-env-proxy --env-file-if-exists=.env scripts/doctor.ts",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
     "https-proxy-agent": "7.0.6",
