@@ -42,7 +42,7 @@ export class LiveSession {
   private active = new Set<string>();
   private calls = new Set<string>();
   private responseIds = new Map<string, string>();
-  private completedResponses = new Set<string>();
+  private finishedResponses = new Set<string>();
   private pending = new Map<string, FunctionOutput[]>();
   private rounds = new Map<string, number>();
   private jobs = new Set<Promise<void>>();
@@ -336,13 +336,15 @@ export class LiveSession {
     }
     if (inner.type === 'response.output_text.done')
       this.emit({ type: 'backend_text', id: delegationId, text: text(inner.text, 2400) });
-    if (inner.type === 'response.completed') {
-      if (responseId && this.completedResponses.has(responseId)) return;
-      if (responseId) this.completedResponses.add(responseId);
+    if (['response.completed', 'response.failed', 'response.incomplete'].includes(text(inner.type))) {
+      if (responseId && this.finishedResponses.has(responseId)) return;
+      if (responseId) this.finishedResponses.add(responseId);
       const usage = record(response.usage);
       this.inputTokens += number(usage.input_tokens);
       this.outputTokens += number(usage.output_tokens);
       this.publishUsage();
+    }
+    if (inner.type === 'response.completed') {
       const outputs = this.pending.get(delegationId) || [];
       this.pending.delete(delegationId);
       if (outputs.length) {
