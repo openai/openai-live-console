@@ -319,8 +319,12 @@ export class BrowserSession {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const api = request('/api/sessions/close', this.config.csrf, { operationId: this.operationId }).catch(
       () => {
-        if (generation === this.generation && this.channel?.readyState === 'open')
-          this.channel.send(JSON.stringify({ type: 'session.close', event_id: crypto.randomUUID() }));
+        try {
+          if (generation === this.generation && this.channel?.readyState === 'open')
+            this.channel.send(JSON.stringify({ type: 'session.close', event_id: crypto.randomUUID() }));
+        } catch {
+          /* The finalization deadline still owns cleanup when both transports fail. */
+        }
         return new Promise<never>(() => undefined);
       },
     );
