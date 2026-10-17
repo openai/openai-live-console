@@ -21,7 +21,7 @@
     "https-proxy-agent": "7.0.6",
     "openai": "7.9.0",
     "proxy-from-env": "1.1.0",
-    "react": "19.2.4",
+    "react": "19.2.8",
     "react-dom": "19.2.4",
     "ws": "8.21.3"
   },
