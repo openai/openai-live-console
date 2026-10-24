@@ -119,10 +119,14 @@ export class TranscriptLedger {
   add(id: string, role: string, text: string, startMs: number) {
     if (!text || this.seen.has(id)) return false;
     this.seen.add(id);
+    if (this.seen.size > 2048) this.seen.delete(this.seen.values().next().value!);
     this.fragments.push({ id, role, text, startMs });
     while (this.fragments.length > 256 || this.fragments.reduce((n, f) => n + f.text.length, 0) > 12000) {
-      const removed = this.fragments.shift();
-      if (removed) this.seen.delete(removed.id);
+      if (this.fragments.length === 1 && this.fragments[0].text.length > 12000) {
+        this.fragments[0].text = this.fragments[0].text.slice(-12000);
+        break;
+      }
+      this.fragments.shift();
     }
     return true;
   }

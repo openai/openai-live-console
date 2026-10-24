@@ -223,8 +223,9 @@ export class LiveSession {
       const delta = text(value.delta, 4000),
         startMs = number(value.start_ms),
         endMs = number(value.end_ms);
-      if (this.ledger.add(id || randomUUID(), role, delta, startMs))
-        this.emit({ type: 'transcript', id: id || randomUUID(), role, text: delta, startMs, endMs });
+      const eventId = id || randomUUID();
+      if (this.ledger.add(eventId, role, delta, startMs))
+        this.emit({ type: 'transcript', id: eventId, role, text: delta, startMs, endMs });
       return;
     }
     if (value.type === 'error') {
